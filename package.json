@@ -1,0 +1,11 @@
+{
+  "name": "feedbackapp",
+  "version": "1.0.0",
+  "description": "App to collect feedback from customers",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Kartik Chauhan",
+  "license": "ISC"
+}
