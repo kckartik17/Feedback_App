@@ -24,7 +24,7 @@ module.exports = function(passport) {
           done(null, existingUser);
         } else {
           const user = await new User(newUser).save();
-          user => done(null, user);
+          done(null, user);
         }
       }
     )
