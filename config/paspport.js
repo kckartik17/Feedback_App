@@ -13,20 +13,19 @@ module.exports = function(passport) {
         callbackURL: "/auth/google/callback",
         proxy: true
       },
-      (accessToken, refreshToken, profile, done) => {
+      async (accessToken, refreshToken, profile, done) => {
         const newUser = {
           googleID: profile.id
         };
 
-        User.findOne({
-          googleID: profile.id
-        }).then(user => {
-          if (user) {
-            done(null, user);
-          } else {
-            new User(newUser).save().then(user => done(null, user));
-          }
-        });
+        const existingUser = await User.findOne({ googleID: profile.id });
+
+        if (existingUser) {
+          done(null, existingUser);
+        } else {
+          const user = await new User(newUser).save();
+          user => done(null, user);
+        }
       }
     )
   );
