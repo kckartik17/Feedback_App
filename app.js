@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 const keys = require("./config/keys");
 
 //Load Models
@@ -29,6 +30,7 @@ mongoose
 const auth = require("./routes/auth");
 const index = require("./routes/index");
 
+app.use(cookieParser());
 app.use(
   session({
     secret: "secret",
