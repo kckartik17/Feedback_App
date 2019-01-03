@@ -1,12 +1,26 @@
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
-
+const mongoose = require("mongoose");
+const keys = require("./config/keys");
 
 //Passport Config
 require("./config/paspport")(passport);
 
 const app = express();
+
+//Mongoose Connect
+mongoose
+  .connect(
+    keys.mongoURI,
+    {
+      useNewUrlParser: true
+    }
+  )
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch("Error in connecting MongoDB database");
 
 //Load routes
 const auth = require("./routes/auth");
