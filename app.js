@@ -4,6 +4,9 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
 
+//Load Models
+require("./models/User");
+
 //Passport Config
 require("./config/paspport")(passport);
 
